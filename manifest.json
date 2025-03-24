@@ -1,0 +1,16 @@
+{
+    "name": "UK Tax Calculator",
+    "short_name": "Tax Calc",
+    "description": "Calculate your UK take-home pay, income tax, National Insurance, and student loan repayments",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#0D6EFD",
+    "icons": [
+        {
+            "src": "favicon.svg",
+            "sizes": "any",
+            "type": "image/svg+xml"
+        }
+    ]
+} 

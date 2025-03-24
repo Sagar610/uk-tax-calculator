@@ -1,0 +1,2051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>UK Tax Calculator 2024/25 | Calculate Your Take Home Pay (Based on 40 Hours/Week)</title>
+    <meta name="title" content="UK Tax Calculator 2024/25 | Calculate Your Take Home Pay (Based on 40 Hours/Week)">
+    <meta name="description" content="Free UK tax calculator for 2024/25. Calculate your take-home pay, income tax, National Insurance, and student loan repayments instantly. Hourly rate based on 40-hour working week. Accurate calculations for UK employees.">
+    <meta name="keywords" content="UK tax calculator, take home pay calculator, salary calculator, income tax calculator, National Insurance calculator, student loan calculator, tax code calculator, UK salary calculator, gross to net calculator, net to gross calculator, 2024/25 tax calculator, UK tax bands, personal allowance calculator, hourly rate calculator, 40 hour working week">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://uk-tax-calculator.vercel.app/">
+    <meta property="og:title" content="UK Tax Calculator 2024/25 | Calculate Your Take Home Pay">
+    <meta property="og:description" content="Free UK tax calculator for 2024/25. Calculate your take-home pay, income tax, National Insurance, and student loan repayments instantly.">
+    <meta property="og:image" content="https://uk-tax-calculator.vercel.app/images/tax-calculator-preview.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://uk-tax-calculator.vercel.app/">
+    <meta property="twitter:title" content="UK Tax Calculator 2024/25 | Calculate Your Take Home Pay">
+    <meta property="twitter:description" content="Free UK tax calculator for 2024/25. Calculate your take-home pay, income tax, National Insurance, and student loan repayments instantly.">
+    <meta property="twitter:image" content="https://uk-tax-calculator.vercel.app/images/tax-calculator-preview.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="favicon.svg">
+    
+    <!-- PWA Support -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0D6EFD">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://your-domain.com/">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "UK Tax Calculator 2024/25",
+        "description": "Free UK tax calculator for 2024/25. Calculate your take-home pay, income tax, National Insurance, and student loan repayments instantly.",
+        "url": "https://your-domain.com",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "All",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "GBP"
+        },
+        "featureList": [
+            "Calculate take-home pay from gross salary",
+            "Calculate gross salary from take-home pay",
+            "National Insurance calculations",
+            "Student loan repayment calculator",
+            "Tax code calculator"
+        ]
+    }
+    </script>
+    
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .calculator-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        .result-card {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #dee2e6;
+        }
+        .result-item:last-child {
+            border-bottom: none;
+        }
+        .total-amount {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #0d6efd;
+        }
+        .form-label {
+            font-weight: 500;
+        }
+        .input-group-text {
+            background-color: #f8f9fa;
+        }
+        .time-period {
+            background-color: #e9ecef;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+        .time-period h4 {
+            color: #0d6efd;
+            margin-bottom: 1rem;
+        }
+        .time-period .result-item {
+            font-size: 0.9rem;
+        }
+        .input-period-selector {
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+        .input-period-selector label {
+            margin-right: 1rem;
+        }
+        .calculation-mode {
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            background-color: #e9ecef;
+            border-radius: 5px;
+        }
+        .calculation-mode .btn {
+            margin-right: 0.5rem;
+        }
+        .tax-year-info {
+            background-color: #e9ecef;
+            padding: 0.5rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        .tax-year-info span {
+            color: #0d6efd;
+            font-weight: 500;
+        }
+        .tax-band-visualization {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-top: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .tax-band {
+            height: 30px;
+            margin: 5px 0;
+            border-radius: 5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tax-band-label {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-weight: 500;
+            z-index: 1;
+        }
+
+        .tax-band-amount {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-weight: 500;
+            z-index: 1;
+        }
+
+        .tax-band-fill {
+            height: 100%;
+            background-color: #0d6efd;
+            transition: width 0.3s ease;
+        }
+
+        .tax-band-fill.higher-rate {
+            background-color: #dc3545;
+        }
+
+        .tax-band-fill.additional-rate {
+            background-color: #198754;
+        }
+
+        .tax-band-info {
+            margin-top: 1rem;
+            padding: 0.5rem;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+
+        .tax-band-info p {
+            margin: 0.25rem 0;
+        }
+
+        .detailed-breakdown {
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .breakdown-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .breakdown-item:last-child {
+            border-bottom: none;
+        }
+
+        .breakdown-label {
+            font-weight: 500;
+        }
+
+        .breakdown-value {
+            color: #0d6efd;
+        }
+
+        .marginal-rate {
+            font-weight: bold;
+            color: #dc3545;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .calculator-section {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .tax-code-calculator {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .tax-code-info {
+            background-color: #e9ecef;
+            border-radius: 5px;
+            padding: 1rem;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .tax-code-breakdown {
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .tax-code-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .tax-code-item:last-child {
+            border-bottom: none;
+        }
+
+        .tax-code-label {
+            font-weight: 500;
+            color: #495057;
+        }
+
+        .tax-code-value {
+            color: #0d6efd;
+        }
+
+        .common-tax-codes {
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .common-code-item {
+            padding: 0.5rem;
+            border-bottom: 1px solid #dee2e6;
+            cursor: pointer;
+        }
+
+        .common-code-item:hover {
+            background-color: #f8f9fa;
+        }
+
+        .common-code-item:last-child {
+            border-bottom: none;
+        }
+
+        .code-explanation {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+
+        .header-section {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        .mini-calendar {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(13, 110, 253, 0.1);
+            padding: 0.25rem;
+            border-radius: 6px;
+            font-size: 0.6rem;
+            color: #0d6efd;
+            font-weight: 500;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            width: 90px;
+            text-align: center;
+        }
+        .mini-calendar .month {
+            font-size: 0.65rem;
+            font-weight: 600;
+            margin-bottom: 0.15rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .mini-calendar .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.5px;
+            background-color: rgba(13, 110, 253, 0.2);
+            padding: 0.5px;
+            border-radius: 2px;
+        }
+        .mini-calendar .weekday {
+            font-size: 0.5rem;
+            padding: 0.5px;
+            background-color: rgba(13, 110, 253, 0.1);
+            line-height: 1;
+        }
+        .mini-calendar .day {
+            padding: 0.5px;
+            background-color: white;
+            font-size: 0.5rem;
+            line-height: 1;
+            min-height: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .mini-calendar .day.today {
+            background-color: #0d6efd;
+            color: white;
+            font-weight: bold;
+        }
+        .mini-calendar .day.other-month {
+            color: #6c757d;
+        }
+        .current-time {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(13, 110, 253, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #0d6efd;
+            font-weight: 500;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .current-time span {
+            color: #0d6efd;
+        }
+        @media (max-width: 768px) {
+            .header-section {
+                flex-direction: column;
+                text-align: center;
+            }
+            .mini-calendar {
+                position: static;
+                transform: none;
+                margin-bottom: 0.5rem;
+                width: 80px;
+            }
+            .current-time {
+                position: static;
+                transform: none;
+                margin-top: 0.5rem;
+            }
+        }
+
+        /* Add these styles to the existing CSS */
+        .form-group {
+            margin-bottom: 1.5rem;
+            background-color: #f8f9fa;
+            padding: 1.25rem;
+            border-radius: 10px;
+            border: 1px solid #e9ecef;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #495057;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .form-control {
+            border: 1px solid #ced4da;
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+
+        .form-control:focus {
+            border-color: #0d6efd;
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.1);
+        }
+
+        .input-group {
+            display: flex;
+            align-items: center;
+        }
+
+        .input-group-text {
+            background-color: #e9ecef;
+            border: 1px solid #ced4da;
+            border-right: none;
+            padding: 0.75rem 1rem;
+            border-radius: 8px 0 0 8px;
+            color: #495057;
+            font-weight: 500;
+        }
+
+        .input-group .form-control {
+            border-radius: 0 8px 8px 0;
+        }
+
+        .form-select {
+            border: 1px solid #ced4da;
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            background-color: white;
+            cursor: pointer;
+        }
+
+        .form-select:focus {
+            border-color: #0d6efd;
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.1);
+        }
+
+        .input-period-selector {
+            background-color: #f8f9fa;
+            padding: 1.25rem;
+            border-radius: 10px;
+            border: 1px solid #e9ecef;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-check {
+            margin-right: 1.5rem;
+        }
+
+        .form-check-input {
+            margin-right: 0.5rem;
+        }
+
+        .form-check-label {
+            color: #495057;
+            font-size: 0.95rem;
+        }
+
+        /* Add these responsive styles */
+        @media (max-width: 768px) {
+            .calculator-container {
+                margin: 1rem;
+                padding: 1rem;
+            }
+
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .calculator-section {
+                padding: 1rem;
+            }
+
+            .form-group {
+                padding: 1rem;
+                margin-bottom: 1rem;
+            }
+
+            .input-period-selector {
+                padding: 0.75rem;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+
+            .form-check {
+                margin-right: 0;
+                flex: 1 1 calc(50% - 0.5rem);
+                min-width: 100px;
+            }
+
+            .calculation-mode {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .calculation-mode .btn {
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 0.5rem;
+            }
+
+            .result-card {
+                padding: 1rem;
+            }
+
+            .result-item {
+                font-size: 0.9rem;
+            }
+
+            .total-amount {
+                font-size: 1.2rem;
+            }
+
+            .time-period {
+                padding: 0.75rem;
+            }
+
+            .tax-band-visualization {
+                padding: 0.75rem;
+            }
+
+            .tax-band {
+                height: 25px;
+            }
+
+            .tax-band-label {
+                font-size: 0.8rem;
+                left: 5px;
+            }
+
+            .tax-band-amount {
+                font-size: 0.8rem;
+                right: 5px;
+            }
+
+            .tax-band-info {
+                font-size: 0.8rem;
+            }
+
+            .detailed-breakdown {
+                padding: 0.75rem;
+            }
+
+            .breakdown-item {
+                font-size: 0.9rem;
+            }
+
+            .tax-code-calculator {
+                padding: 1rem;
+            }
+
+            .tax-code-info {
+                padding: 0.75rem;
+                font-size: 0.85rem;
+            }
+
+            .tax-code-breakdown {
+                padding: 0.75rem;
+            }
+
+            .tax-code-item {
+                font-size: 0.9rem;
+            }
+
+            .common-tax-codes {
+                padding: 0.75rem;
+            }
+
+            .common-code-item {
+                padding: 0.5rem;
+            }
+
+            .code-explanation {
+                font-size: 0.8rem;
+            }
+
+            .header-section {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.5rem;
+            }
+
+            .mini-calendar {
+                position: static;
+                transform: none;
+                margin: 0 auto;
+                width: 80px;
+            }
+
+            .current-time {
+                position: static;
+                transform: none;
+                margin: 0 auto;
+                width: auto;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+                margin-bottom: 0.5rem;
+            }
+
+            h3 {
+                font-size: 1.2rem;
+            }
+
+            h4 {
+                font-size: 1.1rem;
+            }
+
+            .tax-year-info {
+                font-size: 0.8rem;
+                padding: 0.5rem;
+            }
+
+            .footer {
+                padding: 1rem;
+            }
+
+            .footer h5 {
+                font-size: 1rem;
+            }
+
+            .footer p, .footer li {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .calculator-container {
+                margin: 0.5rem;
+                padding: 0.75rem;
+            }
+
+            .form-check {
+                flex: 1 1 100%;
+            }
+
+            .input-group-text {
+                padding: 0.5rem 0.75rem;
+            }
+
+            .form-control {
+                padding: 0.5rem 0.75rem;
+            }
+
+            .form-select {
+                padding: 0.5rem 0.75rem;
+            }
+
+            .result-item {
+                flex-direction: column;
+                gap: 0.25rem;
+            }
+
+            .tax-band {
+                height: 20px;
+            }
+
+            .tax-band-label {
+                font-size: 0.7rem;
+            }
+
+            .tax-band-amount {
+                font-size: 0.7rem;
+            }
+
+            .mini-calendar {
+                width: 65px;
+                padding: 0.15rem;
+                margin: 0 auto;
+            }
+
+            .mini-calendar .month {
+                font-size: 0.55rem;
+                margin-bottom: 0.1rem;
+                line-height: 1;
+            }
+
+            .mini-calendar .calendar-grid {
+                gap: 0.3px;
+                padding: 0.3px;
+            }
+
+            .mini-calendar .weekday {
+                font-size: 0.4rem;
+                padding: 0.3px;
+                line-height: 1;
+            }
+
+            .mini-calendar .day {
+                font-size: 0.4rem;
+                padding: 0.3px;
+                min-height: 7px;
+                line-height: 1;
+            }
+
+            .mini-calendar .day.today {
+                font-size: 0.45rem;
+                font-weight: 600;
+            }
+
+            .mini-calendar .day.other-month {
+                font-size: 0.35rem;
+                color: #999;
+            }
+
+            .current-time {
+                font-size: 0.7rem;
+                padding: 0.3rem 0.6rem;
+                margin-top: 0.3rem;
+            }
+        }
+
+        /* Update styles for the section header and action buttons */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .section-header h3 {
+            margin: 0;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .action-buttons .btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        .action-buttons .btn i {
+            font-size: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .action-buttons {
+                width: 100%;
+            }
+
+            .action-buttons .btn {
+                flex: 1;
+                justify-content: center;
+            }
+        }
+
+        /* Add styles for visitor counter */
+        .visitor-stats {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: #495057;
+        }
+
+        .stat-item i {
+            color: #0d6efd;
+            font-size: 1.1rem;
+        }
+
+        .stat-item span {
+            font-weight: bold;
+            color: #0d6efd;
+        }
+
+        @media (max-width: 768px) {
+            .stats-container {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+        }
+
+        /* Update styles for the footer */
+        .footer {
+            margin-top: 3rem;
+            background-color: #f8f9fa;
+            border-top: 1px solid #dee2e6;
+            padding: 2rem 0;
+        }
+
+        .footer a {
+            text-decoration: none;
+            color: #495057;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+            color: #0d6efd;
+        }
+
+        /* Remove the fixed positioning and container padding-bottom */
+        .container {
+            padding-bottom: 0;
+        }
+
+        /* Add responsive styles for footer */
+        @media (max-width: 768px) {
+            .footer {
+                margin-top: 2rem;
+                padding: 1.5rem 0;
+            }
+            
+            .footer h5 {
+                font-size: 1rem;
+                margin-top: 1rem;
+            }
+            
+            .footer p, .footer li {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+
+    <!-- Add Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container calculator-container">
+        <div class="header-section">
+            <div class="mini-calendar">
+                <div class="month" id="currentMonth"></div>
+                <div class="calendar-grid" id="calendarGrid"></div>
+            </div>
+            <h1 class="text-center mb-4">UK Tax Calculator</h1>
+            <div class="current-time">
+                <span id="currentTimeDisplay"></span>
+            </div>
+        </div>
+        <!-- Add visitor counter section -->
+        <div class="visitor-stats text-center mb-3">
+            <div class="stats-container">
+                <div class="stat-item">
+                    <i class="fas fa-users"></i>
+                    <span id="visitorCount">0</span> Total Visitors
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-calculator"></i>
+                    <span id="calculationCount">0</span> Calculations
+                </div>
+            </div>
+        </div>
+        <div class="tax-year-info text-center">
+            Tax Year: <span id="taxYearDisplay"></span>
+        </div>
+        
+        <div class="main-content">
+            <!-- Left Column: Main Calculator -->
+            <div class="calculator-section">
+                <form id="taxCalculatorForm">
+                    <!-- Calculation Mode Selector -->
+                    <div class="calculation-mode">
+                        <button type="button" class="btn btn-primary" id="grossToNet">Gross to Take Home</button>
+                        <button type="button" class="btn btn-outline-primary" id="netToGross">Take Home to Basic Salary (Gross)</button>
+                    </div>
+
+                    <!-- Input Period Selector -->
+                    <div class="input-period-selector">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inputPeriod" id="yearlyInput" value="yearly" checked>
+                            <label class="form-check-label" for="yearlyInput">Yearly</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inputPeriod" id="monthlyInput" value="monthly">
+                            <label class="form-check-label" for="monthlyInput">Monthly</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inputPeriod" id="weeklyInput" value="weekly">
+                            <label class="form-check-label" for="weeklyInput">Weekly</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inputPeriod" id="dailyInput" value="daily">
+                            <label class="form-check-label" for="dailyInput">Daily</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inputPeriod" id="hourlyInput" value="hourly">
+                            <label class="form-check-label" for="hourlyInput">Hourly</label>
+                        </div>
+                    </div>
+
+                    <!-- Income Input -->
+                    <div class="form-group">
+                        <label for="incomeInput">Income</label>
+                        <div class="input-group">
+                            <span class="input-group-text">£</span>
+                            <input type="number" class="form-control" id="incomeInput" required min="0" step="0.01" placeholder="Enter your income">
+                        </div>
+                    </div>
+
+                    <!-- Tax Code -->
+                    <div class="form-group">
+                        <label for="taxCode">Tax Code (Optional)</label>
+                        <input type="text" class="form-control" id="taxCode" placeholder="e.g., 1257L">
+                    </div>
+
+                    <!-- Student Loan Plan -->
+                    <div class="form-group">
+                        <label for="studentLoan">Student Loan Plan</label>
+                        <select class="form-select" id="studentLoan">
+                            <option value="none">No Student Loan</option>
+                            <option value="plan1">Plan 1</option>
+                            <option value="plan2">Plan 2</option>
+                        </select>
+                    </div>
+
+                    <!-- Pension Contributions -->
+                    <div class="form-group">
+                        <label for="pension">Pension Contributions</label>
+                        <div class="input-group">
+                            <input type="number" class="form-control" id="pension" min="0" max="100" step="0.1" value="0" placeholder="Enter percentage">
+                            <span class="input-group-text">%</span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Right Column: Tax Breakdown and Take Home Pay -->
+            <div class="calculator-section">
+                <div class="section-header">
+                    <h3 class="mb-3">Tax Breakdown & Take Home Pay</h3>
+                    <div class="action-buttons">
+                        <button class="btn btn-outline-primary" id="exportPDF">
+                            <i class="fas fa-file-pdf"></i> Export PDF
+                        </button>
+                        <button class="btn btn-outline-success" id="shareButton">
+                            <i class="fas fa-share-alt"></i> Share
+                        </button>
+                    </div>
+                </div>
+                <div class="result-card" id="results">
+                    <div class="result-item">
+                        <span>Tax Year:</span>
+                        <span id="taxYearResult"></span>
+                    </div>
+                    <div class="result-item">
+                        <span>Gross Income:</span>
+                        <span id="grossIncomeResult">£0</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Income Tax:</span>
+                        <span id="incomeTaxResult">£0</span>
+                    </div>
+                    <div class="result-item">
+                        <span>National Insurance:</span>
+                        <span id="nationalInsuranceResult">£0</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Student Loan Repayment:</span>
+                        <span id="studentLoanResult">£0</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Pension Contributions:</span>
+                        <span id="pensionResult">£0</span>
+                    </div>
+                    <div class="result-item total-amount">
+                        <span>Net Income:</span>
+                        <span id="netIncomeResult">£0</span>
+                    </div>
+
+                    <!-- Time Period Breakdown -->
+                    <div class="time-period">
+                        <h4>Take Home Pay Breakdown</h4>
+                        <div class="result-item">
+                            <span>Yearly:</span>
+                            <span id="yearlyTakeHome">£0</span>
+                        </div>
+                        <div class="result-item">
+                            <span>Monthly:</span>
+                            <span id="monthlyTakeHome">£0</span>
+                        </div>
+                        <div class="result-item">
+                            <span>Weekly:</span>
+                            <span id="weeklyTakeHome">£0</span>
+                        </div>
+                        <div class="result-item">
+                            <span>Daily:</span>
+                            <span id="dailyTakeHome">£0</span>
+                        </div>
+                        <div class="result-item">
+                            <span>Hourly: (40 hours/week)</span>
+                            <span id="hourlyTakeHome">£0</span>
+                        </div>
+                    </div>
+
+                    <!-- Tax Band Visualization -->
+                    <div class="tax-band-visualization">
+                        <h4>Tax Band Visualization</h4>
+                        <div class="tax-band">
+                            <div class="tax-band-label">Personal Allowance</div>
+                            <div class="tax-band-amount">£12,570</div>
+                            <div class="tax-band-fill" id="personalAllowanceFill"></div>
+                        </div>
+                        <div class="tax-band">
+                            <div class="tax-band-label">Basic Rate (20%)</div>
+                            <div class="tax-band-amount">£50,270</div>
+                            <div class="tax-band-fill" id="basicRateFill"></div>
+                        </div>
+                        <div class="tax-band">
+                            <div class="tax-band-label">Higher Rate (40%)</div>
+                            <div class="tax-band-amount">£125,140</div>
+                            <div class="tax-band-fill higher-rate" id="higherRateFill"></div>
+                        </div>
+                        <div class="tax-band">
+                            <div class="tax-band-label">Additional Rate (45%)</div>
+                            <div class="tax-band-amount">£125,140+</div>
+                            <div class="tax-band-fill additional-rate" id="additionalRateFill"></div>
+                        </div>
+                        <div class="tax-band-info" id="taxBandInfo"></div>
+                    </div>
+
+                    <!-- Detailed Breakdown -->
+                    <div class="detailed-breakdown">
+                        <h4>Detailed Tax Breakdown</h4>
+                        <div class="breakdown-item">
+                            <span class="breakdown-label">Personal Allowance Used:</span>
+                            <span class="breakdown-value" id="personalAllowanceUsed">£0</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span class="breakdown-label">Basic Rate Tax Paid:</span>
+                            <span class="breakdown-value" id="basicRateTax">£0</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span class="breakdown-label">Higher Rate Tax Paid:</span>
+                            <span class="breakdown-value" id="higherRateTax">£0</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span class="breakdown-label">Additional Rate Tax Paid:</span>
+                            <span class="breakdown-value" id="additionalRateTax">£0</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span class="breakdown-label">Effective Tax Rate:</span>
+                            <span class="breakdown-value" id="effectiveTaxRate">0%</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span class="breakdown-label">Marginal Tax Rate:</span>
+                            <span class="breakdown-value marginal-rate" id="marginalTaxRate">0%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Section: Tax Code Calculator -->
+        <div class="calculator-section mt-4">
+            <h3 class="mb-3">Tax Code Calculator</h3>
+            <div class="tax-code-calculator">
+                <div class="mb-3">
+                    <label for="taxCodeInput" class="form-label">Enter Your Tax Code</label>
+                    <input type="text" class="form-control" id="taxCodeInput" placeholder="e.g., 1257L">
+                </div>
+                <div class="tax-code-info">
+                    <h5>Understanding Your Tax Code</h5>
+                    <p>Your tax code is made up of numbers and letters. The numbers tell your employer or pension provider how much tax-free income you get in that tax year.</p>
+                </div>
+                <div class="tax-code-breakdown" id="taxCodeBreakdown">
+                    <h5>Tax Code Breakdown</h5>
+                    <div class="tax-code-item">
+                        <span class="tax-code-label">Personal Allowance:</span>
+                        <span class="tax-code-value" id="personalAllowanceCode">£0</span>
+                    </div>
+                    <div class="tax-code-item">
+                        <span class="tax-code-label">Tax Free Amount:</span>
+                        <span class="tax-code-value" id="taxFreeAmount">£0</span>
+                    </div>
+                    <div class="tax-code-item">
+                        <span class="tax-code-label">Emergency Tax:</span>
+                        <span class="tax-code-value" id="emergencyTax">No</span>
+                    </div>
+                </div>
+                <div class="common-tax-codes">
+                    <h5>Common Tax Codes</h5>
+                    <div class="common-code-item" data-code="1257L">
+                        <strong>1257L</strong>
+                        <div class="code-explanation">Standard tax code for most people with one job</div>
+                    </div>
+                    <div class="common-code-item" data-code="BR">
+                        <strong>BR</strong>
+                        <div class="code-explanation">Basic rate tax (20%) on all income</div>
+                    </div>
+                    <div class="common-code-item" data-code="D0">
+                        <strong>D0</strong>
+                        <div class="code-explanation">Higher rate tax (40%) on all income</div>
+                    </div>
+                    <div class="common-code-item" data-code="D1">
+                        <strong>D1</strong>
+                        <div class="code-explanation">Additional rate tax (45%) on all income</div>
+                    </div>
+                    <div class="common-code-item" data-code="NT">
+                        <strong>NT</strong>
+                        <div class="code-explanation">No tax to be paid</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer mt-5 py-3 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>About UK Tax Calculator</h5>
+                    <p>Free and accurate UK tax calculator for 2024/25 tax year. Calculate your take-home pay, income tax, National Insurance, and student loan repayments instantly.</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#calculate-take-home-pay">Calculate Take Home Pay</a></li>
+                        <li><a href="#tax-bands-2023-24">Tax Bands 2023/24</a></li>
+                        <li><a href="#national-insurance-calculator">National Insurance Calculator</a></li>
+                        <li><a href="#student-loan-calculator">Student Loan Calculator</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Resources</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="https://www.gov.uk/income-tax-rates" target="_blank">HMRC Tax Rates</a></li>
+                        <li><a href="https://www.gov.uk/national-insurance" target="_blank">National Insurance Guide</a></li>
+                        <li><a href="https://www.gov.uk/student-loans" target="_blank">Student Loan Information</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="mb-1 small text-muted">
+                        This calculator provides estimates only. For accurate calculations, please consult with HMRC or a tax professional.
+                    </p>
+                    <p class="mb-0 small">
+                        <a href="TERMS.md" class="text-muted" target="_blank">Terms and Conditions</a> | 
+                        <a href="LICENSE" class="text-muted" target="_blank">License</a>
+                    </p>
+                </div>
+            </div>
+            <div class="text-center mt-3">
+                <p class="mb-0">© 2024 UK Tax Calculator. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+        let isGrossToNet = true;
+
+        // Mode toggle buttons
+        document.getElementById('grossToNet').addEventListener('click', function() {
+            isGrossToNet = true;
+            this.classList.add('btn-primary');
+            this.classList.remove('btn-outline-primary');
+            document.getElementById('netToGross').classList.remove('btn-primary');
+            document.getElementById('netToGross').classList.add('btn-outline-primary');
+            document.getElementById('incomeInput').placeholder = 'Enter your gross salary';
+            calculateTax();
+        });
+
+        document.getElementById('netToGross').addEventListener('click', function() {
+            isGrossToNet = false;
+            this.classList.add('btn-primary');
+            this.classList.remove('btn-outline-primary');
+            document.getElementById('grossToNet').classList.remove('btn-primary');
+            document.getElementById('grossToNet').classList.add('btn-outline-primary');
+            document.getElementById('incomeInput').placeholder = 'Enter your desired take home pay';
+            calculateTax();
+        });
+
+        // Update the JavaScript event listeners for auto-calculation
+        document.getElementById('incomeInput').addEventListener('input', calculateTax);
+        document.getElementById('studentLoan').addEventListener('change', calculateTax);
+        document.getElementById('pension').addEventListener('input', calculateTax);
+        document.getElementById('taxCode').addEventListener('input', calculateTax);
+        
+        // Add event listeners for input period changes
+        document.querySelectorAll('input[name="inputPeriod"]').forEach(radio => {
+            radio.addEventListener('change', calculateTax);
+        });
+
+        function convertToYearly(amount, period) {
+            switch(period) {
+                case 'yearly':
+                    return amount;
+                case 'monthly':
+                    return amount * 12;
+                case 'weekly':
+                    return amount * 52;
+                case 'daily':
+                    return amount * 365;
+                case 'hourly':
+                    return amount * (52 * 40); // 40 hours per week, 52 weeks per year
+                default:
+                    return amount;
+            }
+        }
+
+        function calculateNetIncome(grossIncome, studentLoanPlan, pensionPercentage) {
+            // Calculate pension contributions first
+            const pensionContributions = (grossIncome * pensionPercentage) / 100;
+            const taxableIncome = grossIncome - pensionContributions;
+
+            // Calculate personal allowance reduction
+            let personalAllowance = 12570;
+            if (taxableIncome > 100000) {
+                personalAllowance = Math.max(0, 12570 - ((taxableIncome - 100000) / 2));
+            }
+
+            // Calculate income tax
+            let incomeTax = 0;
+            if (taxableIncome > personalAllowance) {
+                // Basic rate (20%) - between personal allowance and £50,270
+                const basicRateIncome = Math.min(taxableIncome - personalAllowance, 50270 - personalAllowance);
+                incomeTax += basicRateIncome * 0.2;
+
+                // Higher rate (40%) - between £50,270 and £125,140
+                if (taxableIncome > 50270) {
+                    const higherRateIncome = Math.min(taxableIncome - 50270, 125140 - 50270);
+                    incomeTax += higherRateIncome * 0.4;
+                }
+
+                // Additional rate (45%) - above £125,140
+                if (taxableIncome > 125140) {
+                    const additionalRateIncome = taxableIncome - 125140;
+                    incomeTax += additionalRateIncome * 0.45;
+                }
+            }
+
+            // Calculate National Insurance
+            let nationalInsurance = 0;
+            if (taxableIncome > 12570) {
+                // Basic rate (12%) - between £12,570 and £50,270
+                const niBasicRate = Math.min(taxableIncome - 12570, 50270 - 12570) * 0.12;
+                nationalInsurance += niBasicRate;
+
+                // Higher rate (2%) - above £50,270
+                if (taxableIncome > 50270) {
+                    const niHigherRate = (taxableIncome - 50270) * 0.02;
+                    nationalInsurance += niHigherRate;
+                }
+            }
+
+            // Calculate Student Loan Repayments
+            let studentLoanRepayment = 0;
+            if (studentLoanPlan === 'plan1' && taxableIncome > 24990) {
+                studentLoanRepayment = (taxableIncome - 24990) * 0.09;
+            } else if (studentLoanPlan === 'plan2' && taxableIncome > 27295) {
+                studentLoanRepayment = (taxableIncome - 27295) * 0.09;
+            }
+
+            const netIncome = grossIncome - incomeTax - nationalInsurance - studentLoanRepayment - pensionContributions;
+
+            return {
+                grossIncome,
+                netIncome,
+                incomeTax,
+                nationalInsurance,
+                studentLoanRepayment,
+                pensionContributions
+            };
+        }
+
+        function findGrossIncome(targetNetIncome, studentLoanPlan, pensionPercentage) {
+            // Start with a reasonable range
+            let lowerBound = targetNetIncome;
+            let upperBound = targetNetIncome * 2;
+            let bestResult = null;
+            let bestDifference = Infinity;
+            let iterations = 0;
+            const maxIterations = 50;
+            const tolerance = 0.01;
+
+            while (iterations < maxIterations) {
+                const grossIncome = (lowerBound + upperBound) / 2;
+                const result = calculateNetIncome(grossIncome, studentLoanPlan, pensionPercentage);
+                const difference = result.netIncome - targetNetIncome;
+
+                if (Math.abs(difference) < Math.abs(bestDifference)) {
+                    bestResult = result;
+                    bestDifference = difference;
+                }
+
+                if (Math.abs(difference) < tolerance) {
+                    return bestResult;
+                }
+
+                if (difference > 0) {
+                    upperBound = grossIncome;
+                } else {
+                    lowerBound = grossIncome;
+                }
+
+                iterations++;
+            }
+
+            return bestResult;
+        }
+
+        function updateTaxBandVisualization(result) {
+            const taxableIncome = result.grossIncome - result.pensionContributions;
+            const personalAllowance = Math.min(12570, Math.max(0, 12570 - ((taxableIncome - 100000) / 2)));
+            
+            // Update tax band fills
+            const personalAllowanceFill = document.getElementById('personalAllowanceFill');
+            const basicRateFill = document.getElementById('basicRateFill');
+            const higherRateFill = document.getElementById('higherRateFill');
+            const additionalRateFill = document.getElementById('additionalRateFill');
+
+            personalAllowanceFill.style.width = `${(personalAllowance / 12570) * 100}%`;
+            basicRateFill.style.width = `${(Math.min(taxableIncome - personalAllowance, 50270 - personalAllowance) / (50270 - personalAllowance)) * 100}%`;
+            higherRateFill.style.width = `${(Math.min(taxableIncome - 50270, 125140 - 50270) / (125140 - 50270)) * 100}%`;
+            additionalRateFill.style.width = `${(Math.max(0, taxableIncome - 125140) / 125140) * 100}%`;
+
+            // Update tax band info
+            const taxBandInfo = document.getElementById('taxBandInfo');
+            taxBandInfo.innerHTML = `
+                <p>Your taxable income: £${taxableIncome.toFixed(2)}</p>
+                <p>Personal allowance: £${personalAllowance.toFixed(2)}</p>
+                <p>Basic rate band: £${Math.min(taxableIncome - personalAllowance, 50270 - personalAllowance).toFixed(2)}</p>
+                <p>Higher rate band: £${Math.min(taxableIncome - 50270, 125140 - 50270).toFixed(2)}</p>
+                <p>Additional rate band: £${Math.max(0, taxableIncome - 125140).toFixed(2)}</p>
+            `;
+
+            // Update detailed breakdown
+            document.getElementById('personalAllowanceUsed').textContent = `£${personalAllowance.toFixed(2)}`;
+            document.getElementById('basicRateTax').textContent = `£${(result.incomeTax * 0.2).toFixed(2)}`;
+            document.getElementById('higherRateTax').textContent = `£${(result.incomeTax * 0.4).toFixed(2)}`;
+            document.getElementById('additionalRateTax').textContent = `£${(result.incomeTax * 0.45).toFixed(2)}`;
+            
+            const effectiveTaxRate = ((result.incomeTax + result.nationalInsurance) / result.grossIncome) * 100;
+            document.getElementById('effectiveTaxRate').textContent = `${effectiveTaxRate.toFixed(1)}%`;
+
+            // Calculate marginal tax rate
+            let marginalRate = '20%';
+            if (taxableIncome > 125140) {
+                marginalRate = '45%';
+            } else if (taxableIncome > 50270) {
+                marginalRate = '40%';
+            }
+            document.getElementById('marginalTaxRate').textContent = marginalRate;
+        }
+
+        function calculateTax() {
+            const inputAmount = parseFloat(document.getElementById('incomeInput').value) || 0;
+            const inputPeriod = document.querySelector('input[name="inputPeriod"]:checked').value;
+            const studentLoanPlan = document.getElementById('studentLoan').value;
+            const pensionPercentage = parseFloat(document.getElementById('pension').value) || 0;
+
+            // Convert input to yearly amount
+            const yearlyAmount = convertToYearly(inputAmount, inputPeriod);
+
+            let result;
+            if (isGrossToNet) {
+                result = calculateNetIncome(yearlyAmount, studentLoanPlan, pensionPercentage);
+            } else {
+                result = findGrossIncome(yearlyAmount, studentLoanPlan, pensionPercentage);
+            }
+
+            // Always display results, even with zero values
+            const monthlyTakeHome = result ? result.netIncome / 12 : 0;
+            const weeklyTakeHome = result ? result.netIncome / 52 : 0;
+            const dailyTakeHome = result ? result.netIncome / 365 : 0;
+            const hourlyTakeHome = result ? result.netIncome / (52 * 40) : 0; // 40 hours per week, 52 weeks per year
+
+            // Display results
+            document.getElementById('grossIncomeResult').textContent = result ? `£${result.grossIncome.toFixed(2)}` : '£0.00';
+            document.getElementById('incomeTaxResult').textContent = result ? `£${result.incomeTax.toFixed(2)}` : '£0.00';
+            document.getElementById('nationalInsuranceResult').textContent = result ? `£${result.nationalInsurance.toFixed(2)}` : '£0.00';
+            document.getElementById('studentLoanResult').textContent = result ? `£${result.studentLoanRepayment.toFixed(2)}` : '£0.00';
+            document.getElementById('pensionResult').textContent = result ? `£${result.pensionContributions.toFixed(2)}` : '£0.00';
+            document.getElementById('netIncomeResult').textContent = result ? `£${result.netIncome.toFixed(2)}` : '£0.00';
+            
+            // Display time period breakdowns
+            document.getElementById('yearlyTakeHome').textContent = result ? `£${result.netIncome.toFixed(2)}` : '£0.00';
+            document.getElementById('monthlyTakeHome').textContent = `£${monthlyTakeHome.toFixed(2)}`;
+            document.getElementById('weeklyTakeHome').textContent = `£${weeklyTakeHome.toFixed(2)}`;
+            document.getElementById('dailyTakeHome').textContent = `£${dailyTakeHome.toFixed(2)}`;
+            document.getElementById('hourlyTakeHome').textContent = `£${hourlyTakeHome.toFixed(2)}`;
+
+            // Update tax band visualization with zero or calculated values
+            if (result) {
+                updateTaxBandVisualization(result);
+            } else {
+                // Reset visualization to zero state
+                document.getElementById('personalAllowanceFill').style.width = '0%';
+                document.getElementById('basicRateFill').style.width = '0%';
+                document.getElementById('higherRateFill').style.width = '0%';
+                document.getElementById('additionalRateFill').style.width = '0%';
+                
+                // Reset tax band info
+                document.getElementById('taxBandInfo').innerHTML = `
+                    <p>Your taxable income: £0.00</p>
+                    <p>Personal allowance: £12,570.00</p>
+                    <p>Basic rate band: £0.00</p>
+                    <p>Higher rate band: £0.00</p>
+                    <p>Additional rate band: £0.00</p>
+                `;
+
+                // Reset detailed breakdown
+                document.getElementById('personalAllowanceUsed').textContent = '£0.00';
+                document.getElementById('basicRateTax').textContent = '£0.00';
+                document.getElementById('higherRateTax').textContent = '£0.00';
+                document.getElementById('additionalRateTax').textContent = '£0.00';
+                document.getElementById('effectiveTaxRate').textContent = '0.0%';
+                document.getElementById('marginalTaxRate').textContent = '0%';
+            }
+        }
+
+        // Call calculateTax on page load to initialize with zero values
+        window.addEventListener('load', calculateTax);
+
+        // Function to get current tax year
+        function getCurrentTaxYear() {
+            const today = new Date();
+            const currentMonth = today.getMonth() + 1; // getMonth() returns 0-11
+            const currentYear = today.getFullYear();
+            
+            // UK tax year runs from April 6th to April 5th
+            if (currentMonth < 4 || (currentMonth === 4 && today.getDate() < 6)) {
+                return `${currentYear - 1}/${currentYear}`;
+            } else {
+                return `${currentYear}/${currentYear + 1}`;
+            }
+        }
+
+        // Function to get tax year start date
+        function getTaxYearStart() {
+            const today = new Date();
+            const currentMonth = today.getMonth() + 1;
+            const currentYear = today.getFullYear();
+            
+            if (currentMonth < 4 || (currentMonth === 4 && today.getDate() < 6)) {
+                return new Date(currentYear - 1, 3, 6); // April 6th of previous year
+            } else {
+                return new Date(currentYear, 3, 6); // April 6th of current year
+            }
+        }
+
+        // Function to get tax year end date
+        function getTaxYearEnd() {
+            const startDate = getTaxYearStart();
+            return new Date(startDate.getFullYear() + 1, 3, 5); // April 5th of next year
+        }
+
+        // Update tax year display
+        function updateTaxYearDisplay() {
+            const taxYear = getCurrentTaxYear();
+            const startDate = getTaxYearStart();
+            const endDate = getTaxYearEnd();
+            
+            const formattedStartDate = startDate.toLocaleDateString('en-GB', { 
+                day: 'numeric', 
+                month: 'long', 
+                year: 'numeric' 
+            });
+            const formattedEndDate = endDate.toLocaleDateString('en-GB', { 
+                day: 'numeric', 
+                month: 'long', 
+                year: 'numeric' 
+            });
+
+            document.getElementById('taxYearDisplay').textContent = `${taxYear} (${formattedStartDate} to ${formattedEndDate})`;
+            document.getElementById('taxYearResult').textContent = taxYear;
+        }
+
+        // Call updateTaxYearDisplay when page loads
+        updateTaxYearDisplay();
+
+        // Register Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful');
+                    })
+                    .catch(err => {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+            });
+        }
+
+        // Add tax code calculator functionality
+        document.getElementById('taxCodeInput').addEventListener('input', function() {
+            const taxCode = this.value.toUpperCase();
+            calculateTaxCode(taxCode);
+        });
+
+        // Add click handlers for common tax codes
+        document.querySelectorAll('.common-code-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const code = this.dataset.code;
+                document.getElementById('taxCodeInput').value = code;
+                calculateTaxCode(code);
+            });
+        });
+
+        function calculateTaxCode(taxCode) {
+            const breakdown = document.getElementById('taxCodeBreakdown');
+            const personalAllowance = document.getElementById('personalAllowanceCode');
+            const taxFreeAmount = document.getElementById('taxFreeAmount');
+            const emergencyTax = document.getElementById('emergencyTax');
+
+            // Reset values
+            personalAllowance.textContent = '£0';
+            taxFreeAmount.textContent = '£0';
+            emergencyTax.textContent = 'No';
+
+            // Handle special tax codes
+            if (taxCode === 'BR') {
+                personalAllowance.textContent = '£0';
+                taxFreeAmount.textContent = '£0';
+                emergencyTax.textContent = 'Yes';
+            } else if (taxCode === 'D0') {
+                personalAllowance.textContent = '£0';
+                taxFreeAmount.textContent = '£0';
+                emergencyTax.textContent = 'Yes';
+            } else if (taxCode === 'D1') {
+                personalAllowance.textContent = '£0';
+                taxFreeAmount.textContent = '£0';
+                emergencyTax.textContent = 'Yes';
+            } else if (taxCode === 'NT') {
+                personalAllowance.textContent = '£12,570';
+                taxFreeAmount.textContent = '£12,570';
+                emergencyTax.textContent = 'No';
+            } else {
+                // Handle numeric tax codes (e.g., 1257L)
+                const numericPart = taxCode.match(/\d+/);
+                if (numericPart) {
+                    const amount = parseInt(numericPart[0]) * 10;
+                    personalAllowance.textContent = `£${amount.toLocaleString()}`;
+                    taxFreeAmount.textContent = `£${amount.toLocaleString()}`;
+                    emergencyTax.textContent = 'No';
+                }
+            }
+
+            // Update the main calculator's tax code input
+            document.getElementById('taxCode').value = taxCode;
+            calculateTax();
+        }
+
+        // Update current time display
+        function updateCurrentTime() {
+            const now = new Date();
+            const formattedDate = now.toLocaleDateString('en-GB', {
+                day: 'numeric',
+                month: 'short',
+                year: 'numeric'
+            });
+            const formattedTime = now.toLocaleTimeString('en-GB', {
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: false
+            });
+            document.getElementById('currentTimeDisplay').textContent = `${formattedDate} ${formattedTime}`;
+        }
+
+        // Update time immediately and then every second
+        updateCurrentTime();
+        setInterval(updateCurrentTime, 1000);
+
+        // Update the updateMiniCalendar function
+        function updateMiniCalendar() {
+            const now = new Date();
+            const monthNames = ["January", "February", "March", "April", "May", "June",
+                              "July", "August", "September", "October", "November", "December"];
+            
+            document.getElementById('currentMonth').textContent = monthNames[now.getMonth()];
+            
+            const year = now.getFullYear();
+            const month = now.getMonth();
+            const firstDay = new Date(year, month, 1);
+            const lastDay = new Date(year, month + 1, 0);
+            const startingDay = firstDay.getDay();
+            
+            const weekdays = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
+            const daysInMonth = lastDay.getDate();
+            
+            let calendarHTML = '';
+            
+            // Add weekday headers
+            weekdays.forEach(day => {
+                calendarHTML += `<div class="weekday">${day}</div>`;
+            });
+            
+            // Add empty cells for days before the first day of the month
+            for (let i = 0; i < startingDay; i++) {
+                calendarHTML += `<div class="day other-month"></div>`;
+            }
+            
+            // Add days of the month
+            for (let day = 1; day <= daysInMonth; day++) {
+                const isToday = day === now.getDate() && month === now.getMonth() && year === now.getFullYear();
+                calendarHTML += `<div class="day ${isToday ? 'today' : ''}">${day}</div>`;
+            }
+            
+            // Add empty cells for remaining days
+            const remainingDays = 42 - (startingDay + daysInMonth); // 42 = 6 rows × 7 days
+            for (let i = 0; i < remainingDays; i++) {
+                calendarHTML += `<div class="day other-month"></div>`;
+            }
+            
+            document.getElementById('calendarGrid').innerHTML = calendarHTML;
+        }
+
+        // Call updateMiniCalendar when page loads
+        updateMiniCalendar();
+
+        // Show action buttons when results are displayed
+        function showActionButtons() {
+            document.getElementById('actionButtons').style.display = 'flex';
+        }
+
+        // Hide action buttons when results are hidden
+        function hideActionButtons() {
+            document.getElementById('actionButtons').style.display = 'none';
+        }
+
+        // Update the calculateTax function to show/hide action buttons
+        const originalCalculateTax = calculateTax;
+        calculateTax = function() {
+            originalCalculateTax();
+            const results = document.getElementById('results');
+            if (results.style.display === 'block') {
+                showActionButtons();
+            } else {
+                hideActionButtons();
+            }
+        };
+
+        // Export to PDF functionality
+        document.getElementById('exportPDF').addEventListener('click', function() {
+            // Get the income input value and check if it's a valid number
+            const incomeInput = document.getElementById('incomeInput');
+            const incomeValue = parseFloat(incomeInput.value);
+            
+            // Check if income is a valid number and greater than 0
+            if (!incomeValue || incomeValue <= 0) {
+                // Create and show alert
+                const alertDiv = document.createElement('div');
+                alertDiv.className = 'alert alert-danger alert-dismissible fade show';
+                alertDiv.innerHTML = `
+                    Please enter a valid salary amount before exporting.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                `;
+                document.querySelector('.container').insertBefore(alertDiv, document.getElementById('results'));
+                
+                // Auto dismiss after 3 seconds
+                setTimeout(() => {
+                    alertDiv.remove();
+                }, 3000);
+                
+                return;
+            }
+
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            // Show loading state
+            this.disabled = true;
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating PDF...';
+
+            // Set default font
+            doc.setFont('helvetica');
+            
+            // Add company header
+            doc.setFillColor(248, 249, 250);
+            doc.rect(0, 0, 210, 40, 'F');
+            
+            doc.setFontSize(20);
+            doc.setFont('helvetica', 'bold');
+            doc.text('PAYSLIP', 105, 15, { align: 'center' });
+            
+            doc.setFontSize(10);
+            doc.setFont('helvetica', 'normal');
+            doc.text('UK Tax Calculator Ltd', 15, 25);
+            doc.text('123 Business Street', 15, 30);
+            doc.text('London, SW1A 1AA', 15, 35);
+
+            // Add employee information section
+            doc.setFillColor(255, 255, 255);
+            doc.rect(0, 40, 210, 35, 'F');
+            
+            doc.setFont('helvetica', 'bold');
+            doc.text('Employee Details', 15, 48);
+            doc.setFont('helvetica', 'normal');
+            
+            // Left column
+            doc.text('Employee Name:', 15, 55);
+            doc.text('Employee Number:', 15, 60);
+            doc.text('National Insurance No:', 15, 65);
+            doc.text('Tax Code:', 15, 70);
+            
+            // Right column
+            doc.text('Sagar Gondaliya', 80, 55);
+            doc.text('EMP001', 80, 60);
+            doc.text('AB123456C', 80, 65);
+            doc.text(document.getElementById('taxCode').value || '1257L', 80, 70);
+
+            // Add pay period information
+            doc.setFillColor(233, 236, 239);
+            doc.rect(0, 75, 210, 15, 'F');
+            
+            doc.setFont('helvetica', 'bold');
+            doc.text('Pay Period:', 15, 84);
+            const now = new Date();
+            const monthYear = now.toLocaleString('en-GB', { month: 'long', year: 'numeric' });
+            doc.text(monthYear, 50, 84);
+            doc.text('Tax Year:', 120, 84);
+            doc.text(document.getElementById('taxYearResult').textContent, 155, 84);
+
+            // Add payments section
+            doc.setFillColor(255, 255, 255);
+            doc.rect(0, 90, 210, 80, 'F');
+            
+            // Payments header
+            doc.setFillColor(13, 110, 253);
+            doc.rect(15, 95, 85, 8, 'F');
+            doc.setTextColor(255, 255, 255);
+            doc.text('Payments', 20, 100);
+            
+            // Deductions header
+            doc.rect(110, 95, 85, 8, 'F');
+            doc.text('Deductions', 115, 100);
+            
+            // Reset text color
+            doc.setTextColor(0, 0, 0);
+            doc.setFont('helvetica', 'normal');
+
+            // Get monthly values
+            const monthlyGross = parseFloat(document.getElementById('grossIncomeResult').textContent.replace('£', '').replace(',', '')) / 12;
+            const monthlyIncomeTax = parseFloat(document.getElementById('incomeTaxResult').textContent.replace('£', '').replace(',', '')) / 12;
+            const monthlyNI = parseFloat(document.getElementById('nationalInsuranceResult').textContent.replace('£', '').replace(',', '')) / 12;
+            const monthlyStudentLoan = parseFloat(document.getElementById('studentLoanResult').textContent.replace('£', '').replace(',', '')) / 12;
+            const monthlyPension = parseFloat(document.getElementById('pensionResult').textContent.replace('£', '').replace(',', '')) / 12;
+            const monthlyNet = parseFloat(document.getElementById('netIncomeResult').textContent.replace('£', '').replace(',', '')) / 12;
+
+            // Payments details
+            doc.text('Basic Monthly Salary:', 20, 110);
+            doc.text(`£${monthlyGross.toFixed(2)}`, 90, 110, { align: 'right' });
+            
+            // Deductions details
+            const monthlyDeductions = [
+                { label: 'Income Tax:', value: `£${monthlyIncomeTax.toFixed(2)}` },
+                { label: 'National Insurance:', value: `£${monthlyNI.toFixed(2)}` },
+                { label: 'Student Loan:', value: `£${monthlyStudentLoan.toFixed(2)}` },
+                { label: 'Pension:', value: `£${monthlyPension.toFixed(2)}` }
+            ];
+
+            monthlyDeductions.forEach((deduction, index) => {
+                doc.text(deduction.label, 115, 110 + (index * 8));
+                doc.text(deduction.value, 190, 110 + (index * 8), { align: 'right' });
+            });
+
+            // Add totals
+            doc.setFillColor(248, 249, 250);
+            doc.rect(0, 170, 210, 25, 'F');
+            
+            doc.setFont('helvetica', 'bold');
+            doc.text('Monthly Gross Pay:', 20, 180);
+            doc.text(`£${monthlyGross.toFixed(2)}`, 90, 180, { align: 'right' });
+            doc.text('Total Monthly Deductions:', 115, 180);
+            
+            // Calculate total monthly deductions
+            const totalMonthlyDeductions = monthlyIncomeTax + monthlyNI + monthlyStudentLoan + monthlyPension;
+            doc.text(`£${totalMonthlyDeductions.toFixed(2)}`, 190, 180, { align: 'right' });
+
+            // Net pay section
+            doc.setFillColor(13, 110, 253);
+            doc.rect(0, 195, 210, 15, 'F');
+            doc.setTextColor(255, 255, 255);
+            doc.text('Monthly Net Pay:', 15, 204);
+            doc.text(`£${monthlyNet.toFixed(2)}`, 190, 204, { align: 'right' });
+
+            // Add payment information
+            doc.setFillColor(255, 255, 255);
+            doc.rect(0, 210, 210, 35, 'F');
+            doc.setTextColor(0, 0, 0);
+            doc.setFont('helvetica', 'bold');
+            doc.text('Payment Information', 15, 220);
+            doc.setFont('helvetica', 'normal');
+            doc.text('Payment Method:', 15, 228);
+            doc.text('Bank Transfer', 80, 228);
+            doc.text('Payment Date:', 15, 236);
+            const paymentDate = now.toLocaleDateString('en-GB', { 
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+            });
+            doc.text(paymentDate, 80, 236);
+
+            // Add YTD summary
+            doc.setFillColor(248, 249, 250);
+            doc.rect(0, 245, 210, 35, 'F');
+            doc.setFont('helvetica', 'bold');
+            doc.text('Year to Date Summary', 15, 255);
+            doc.setFont('helvetica', 'normal');
+            
+            // Calculate YTD based on tax year (April to April)
+            const currentMonth = now.getMonth() + 1; // 1-12
+            const currentDay = now.getDate();
+            
+            // Calculate months since start of tax year
+            let monthsSinceApril;
+            if (currentMonth >= 4) { // April onwards
+                monthsSinceApril = currentMonth - 4 + 1; // +1 to include current month
+            } else { // January to March
+                monthsSinceApril = currentMonth + 9; // 9 months since previous April
+            }
+
+            // If it's before April 6th in April, adjust the calculation
+            if (currentMonth === 4 && currentDay < 6) {
+                monthsSinceApril = 12; // Still in previous tax year
+            }
+
+            // Get yearly values from the results
+            const yearlyGross = parseFloat(document.getElementById('grossIncomeResult').textContent.replace('£', '').replace(/,/g, ''));
+            const yearlyTax = parseFloat(document.getElementById('incomeTaxResult').textContent.replace('£', '').replace(/,/g, ''));
+            
+            // Calculate YTD values
+            const ytdGross = (yearlyGross / 12) * monthsSinceApril;
+            const ytdTax = (yearlyTax / 12) * monthsSinceApril;
+            
+            // Format numbers with commas for thousands
+            const formatNumber = (num) => {
+                return num.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            };
+            
+            doc.text('Gross Pay YTD:', 15, 263);
+            doc.text(`£${formatNumber(ytdGross)}`, 80, 263);
+            doc.text('Tax Paid YTD:', 15, 271);
+            doc.text(`£${formatNumber(ytdTax)}`, 80, 271);
+
+            // Add footer
+            doc.setFillColor(233, 236, 239);
+            doc.rect(0, 280, 210, 17, 'F');
+            doc.setTextColor(108, 117, 125);
+            doc.setFontSize(8);
+            const timestamp = now.toLocaleString('en-GB', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: false
+            });
+            doc.text(`Generated on ${timestamp}`, 105, 287, { align: 'center' });
+            doc.text('This is a computer generated payslip and does not require a signature', 105, 292, { align: 'center' });
+
+            // Save the PDF
+            doc.save('payslip.pdf');
+
+            // Reset button state
+            this.disabled = false;
+            this.innerHTML = '<i class="fas fa-file-pdf"></i> Export PDF';
+        });
+
+        // Share functionality
+        document.getElementById('shareButton').addEventListener('click', async function() {
+            const results = document.getElementById('results');
+            if (!results) return;
+
+            // Create share text
+            const grossIncome = document.getElementById('grossIncomeResult').textContent;
+            const netIncome = document.getElementById('netIncomeResult').textContent;
+            const taxYear = document.getElementById('taxYearResult').textContent;
+            
+            const shareText = `UK Tax Calculator Results (${taxYear}):\n` +
+                            `Gross Income: ${grossIncome}\n` +
+                            `Take Home Pay: ${netIncome}\n` +
+                            `Calculate your tax at: ${window.location.href}`;
+
+            try {
+                if (navigator.share) {
+                    await navigator.share({
+                        title: 'UK Tax Calculator Results',
+                        text: shareText,
+                        url: window.location.href
+                    });
+                } else {
+                    // Fallback for browsers that don't support Web Share API
+                    const textArea = document.createElement('textarea');
+                    textArea.value = shareText;
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textArea);
+                    
+                    // Show success message
+                    const originalText = this.innerHTML;
+                    this.innerHTML = '<i class="fas fa-check"></i> Copied to clipboard!';
+                    setTimeout(() => {
+                        this.innerHTML = originalText;
+                    }, 2000);
+                }
+            } catch (error) {
+                console.error('Error sharing:', error);
+            }
+        });
+
+        // Add visitor tracking functionality
+        function initializeVisitorTracking() {
+            // Get stored counts or initialize them
+            let visitorCount = parseInt(localStorage.getItem('visitorCount')) || 0;
+            let calculationCount = parseInt(localStorage.getItem('calculationCount')) || 0;
+            
+            // Check if this is a new session
+            if (!sessionStorage.getItem('sessionStarted')) {
+                visitorCount++;
+                localStorage.setItem('visitorCount', visitorCount);
+                sessionStorage.setItem('sessionStarted', 'true');
+            }
+            
+            // Update the display
+            document.getElementById('visitorCount').textContent = visitorCount.toLocaleString();
+            document.getElementById('calculationCount').textContent = calculationCount.toLocaleString();
+            
+            // Add calculation counter to the calculate function
+            const originalCalculateTax = calculateTax;
+            calculateTax = function() {
+                originalCalculateTax();
+                if (document.getElementById('results').style.display === 'block') {
+                    calculationCount++;
+                    localStorage.setItem('calculationCount', calculationCount);
+                    document.getElementById('calculationCount').textContent = calculationCount.toLocaleString();
+                }
+            };
+        }
+
+        // Initialize visitor tracking when the page loads
+        initializeVisitorTracking();
+    </script>
+
+    <!-- Add this before the closing body tag -->
+    <div class="modal fade" id="disclaimerModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="disclaimerModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="disclaimerModalLabel">Important Disclaimer</h5>
+                </div>
+                <div class="modal-body">
+                    <p class="mb-3">Welcome to the UK Tax Calculator. Please read this important information:</p>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">✓ This calculator provides estimates only</li>
+                        <li class="mb-2">✓ Results may differ from your actual take-home pay</li>
+                        <li class="mb-2">✓ Not a substitute for professional tax advice</li>
+                        <li class="mb-2">✓ For accurate calculations, consult HMRC or a tax professional</li>
+                    </ul>
+                    <p class="mb-0">By using this calculator, you agree to our <a href="TERMS.md" target="_blank">Terms and Conditions</a>.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">I Understand</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    // Add this to your existing JavaScript
+    document.addEventListener('DOMContentLoaded', function() {
+        // Check if user has seen the disclaimer
+        if (!localStorage.getItem('disclaimerSeen')) {
+            // Show the disclaimer modal
+            var disclaimerModal = new bootstrap.Modal(document.getElementById('disclaimerModal'));
+            disclaimerModal.show();
+            
+            // Mark disclaimer as seen
+            localStorage.setItem('disclaimerSeen', 'true');
+        }
+    });
+    </script>
+</body>
+</html> 
