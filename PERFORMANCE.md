@@ -1,6 +1,6 @@
 # Performance Optimization Guide
 
-**Developer**: Sagar Gondaliya
+**Developer**: madhavi Bhatt
 
 ## Current Optimizations
 
@@ -156,5 +156,5 @@
 ## Contact
 
 For performance-related questions or suggestions, please contact:
-- Developer: Sagar Gondaliya
+- Developer: madhavi Bhatt
 - GitHub: [Your GitHub Profile] 
