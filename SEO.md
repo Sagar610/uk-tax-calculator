@@ -1,6 +1,6 @@
 # SEO Optimization Guide
 
-**Developer**: Sagar Gondaliya
+**Developer**: Madhavi bhatt
 
 ## Meta Tags Optimization
 
@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Free UK Tax Calculator 2023/24 - Calculate your take-home pay, income tax, National Insurance, and student loan repayments. Accurate calculations for UK salaries with detailed breakdowns.">
 <meta name="keywords" content="UK tax calculator, take home pay calculator, salary calculator, income tax calculator, National Insurance calculator, student loan calculator, tax code calculator, UK salary calculator, gross to net calculator, net to gross calculator, 2023/24 tax calculator, UK tax bands, personal allowance calculator">
-<meta name="author" content="Sagar Gondaliya">
+<meta name="author" content="Madhavi bhatt">
 <meta name="robots" content="index, follow">
 ```
 
@@ -185,5 +185,5 @@
 ## Contact
 
 For SEO-related questions or suggestions, please contact:
-- Developer: Sagar Gondaliya
+- Developer: Madhavi bhatt
 - GitHub: [Your GitHub Profile] 
