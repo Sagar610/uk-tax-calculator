@@ -63,8 +63,8 @@ This UK Tax Calculator is provided as a free tool for general guidance and estim
 ## Contact
 
 For questions about these terms and conditions, please contact:
-- Developer: Sagar Gondaliya
-- GitHub: [Your GitHub Profile]
+- Developer: Madhavi Bhatt
+
 
 ## License
 
@@ -74,4 +74,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 - HMRC for tax band information
 - UK Government for tax policy information
-- Developed by Sagar Gondaliya 
+- Developed by Madhavi Bhatt 
